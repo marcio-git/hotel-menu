@@ -5,7 +5,6 @@ export const MenuContext = createContext();
 
 export default function MenuProvider({ children }) {
 	const [menu, setMenu] = useState([])
-	// const [totalPrice, setTotalPrice] = useState(0)
 
 /* ---------------------- agrega un plato al menu --------------------- */
   const addDish = (item) => {

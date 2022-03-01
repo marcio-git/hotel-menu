@@ -1,15 +1,19 @@
 import axios from "axios";
 
+const config = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  baseUrl: process.env.REACT_APP_BASE_URL,
+};
+
 export const getRecipes = async({dish, vegan}) => {
   try {
-    const respuesta = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${dish}&addRecipeInformation=true`, {
+    const respuesta = await axios.get(`${config.baseUrl}/recipes/complexSearch?query=${dish}&addRecipeInformation=true`, {
       params: {
-        apiKey: '6ce9458e4ce140b1886e0829b12576ec',
+        apiKey: config.apiKey,
         diet: vegan ? 'vegan' : ''
       }
     });
     if(respuesta.status === 200) {
-      // console.log(respuesta)
       return respuesta
     }
   } catch(error) {

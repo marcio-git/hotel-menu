@@ -20,9 +20,6 @@ function App() {
                 </Route>
               </Routes>
             </ProtectedRoutes>} />
-            {/* <Route path="/search" element={<Home />}>
-              <Route exact path="item/:id" element={<ItemDetail />} />
-            </Route> */}
             <Route exact path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
