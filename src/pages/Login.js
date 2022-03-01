@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom"
 import { Formik, ErrorMessage } from "formik";
 import Swal from "sweetalert2";
@@ -11,7 +11,12 @@ import { useAuth } from "../hooks/useAuth";
 export default function Login() {
   const { login, isAuthenticated } = useAuth()
   const [formularioEnvidado, setFormularioEnviado] = useState()
-  console.log(isAuthenticated)
+
+  useEffect(() => {
+    return () => {
+      console.log("unmounted")
+    }
+  },[isAuthenticated])
 
   return (isAuthenticated ?
     <Navigate to="/" /> :
@@ -41,7 +46,6 @@ export default function Login() {
         setTimeout(()=> setFormularioEnviado(false), 2000)
         login(valores)
           .then(({response}) => {
-            console.log(response)
             if(response.status === 401) {
               return Swal.fire("¡Intente otra vez!", `Error ${response.status}: ${response.data.error}`, "error")
             };

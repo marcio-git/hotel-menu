@@ -19,8 +19,8 @@ export function useLocalStorage(key, initialValue) {
     }
   }
 
-  const deleteValue = () => {
-    window.localStorage.removeItem('token')
+  const deleteValue = (key) => {
+    window.localStorage.removeItem(key)
   }
   return [storedValue, setValue, deleteValue]
 }

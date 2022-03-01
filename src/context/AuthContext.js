@@ -2,7 +2,6 @@ import { createContext } from "react";
 import axios from "axios";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
@@ -25,8 +24,12 @@ export default function AuthProvider({ children }) {
       return error
     }
   }
+  const logout = (key) => {
+    setIsAuthenticated(false)
+    deleteValue(key)
+  }
   
-  return <AuthContext.Provider value={{ login, deleteValue, isAuthenticated }}>
+  return <AuthContext.Provider value={{ login, logout, isAuthenticated }}>
     {children}
   </AuthContext.Provider>
 }
