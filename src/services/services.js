@@ -25,7 +25,11 @@ export const getRecipesDetail = async(idRecipe) => {
   // console.log(idRecipe)
   if(idRecipe) {
   try {
-    const respuesta = await axios.get(`https://api.spoonacular.com/recipes/${idRecipe}/information`);
+    const respuesta = await axios.get(`https://api.spoonacular.com/recipes/${idRecipe}/information`, {
+      params: {
+        apiKey: config.apiKey,
+      }
+    });
     if(respuesta.status === 200) {
       // console.log(respuesta)
       return respuesta
